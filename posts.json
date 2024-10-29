@@ -1,4 +1,17 @@
-{
-  "hola": "mundo",
-  "titulo": "gato"
-}
+{ "articulos" : [
+  {
+    "titulo": "Post1",
+    "url": "post1",
+    "img": "beans-on-toast.jpg"
+  },
+  {
+     "titulo": "Post2",
+    "url": "post2",
+    "img": null
+  },
+   {
+     "titulo": "Post3",
+    "url": "post3",
+    "img": null
+  }
+]}
