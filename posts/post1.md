@@ -1,5 +1,4 @@
----
-date: 2024-10-20T00:00:00Z
+date: 2024-10-20
 ---
 
 # Why We're Creating Healthy Snack Alternatives
