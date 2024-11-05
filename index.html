@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>ZIYEY BLOG</title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -47,19 +50,23 @@
   <body>
     <header>
       <h1>ZIYEY BLOG</h1>
+      <a href="">GO BACK</a>
     </header>
     <main id="main"></main>
     <script>
+      // Gets a text resource
       function getResURL(name) {
         return `https://raw.githubusercontent.com/rolfan-ish/eie-web/refs/heads/main/${name}`;
       }
 
+      // Gets an image resource
       function getImage(name) {
         return `https://github.com/rolfan-ish/eie-web/blob/main/images/${name}`;
       }
 
       const main = document.getElementById("main");
 
+      // fetches and creates an article
       async function expandArticle(ref) {
         const src = getResURL(`posts/${ref}.md`);
         try {
@@ -76,6 +83,7 @@
         }
       }
 
+      // Generates all articles
       async function getArticle() {
         try {
           const response = await fetch(getResURL("posts.json"));
