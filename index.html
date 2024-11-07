@@ -1,128 +1,175 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <title>ZIYEY BLOG</title>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <style>
-      * {
-        font-family: 'Courier New', Courier, monospace;
-      }
-      body {
-        background-color: bisque;
-      }
-      header {
-        text-align: center;
-      }
-      main {
-        align-content: center;
-      }
-      article {
-        cursor: pointer;
-        background-repeat:round;
-        display: inline-flex;
-        background-color: beige;
-        align-items: center;
-        box-shadow: 1px;
-        margin: 1%;
-        padding: 1rem;
-        box-shadow: 5px 5px 5px;
-      }
-      article h2 {
-        background-color: beige;
-        padding-top: 0.5em;
-        padding-bottom: 0.5em;
-        padding-left: 0.2em;
-        padding-right: 0.5em;
-      }
-      article div {
-        max-width: 50%;
-        background-color: beige;
-        padding: 1%;
-        box-shadow: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>ZIYEY BLOG</h1>
-      <a href="">GO BACK</a>
-    </header>
-    <main id="main"></main>
-    <script>
-      // Gets a text resource
-      function getResURL(name) {
-        return `https://raw.githubusercontent.com/rolfan-ish/eie-web/refs/heads/main/${name}`;
-      }
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Ziyey Bytes - Healthy Fast Food</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			body {
+				background-color: #f0f0f0;
+				background-image: url("images/fondo.png"); 
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+		</style>
+	</head>
+	<body class="landing is-preload">
 
-      // Gets an image resource
-      function getImage(name) {
-        return `https://github.com/rolfan-ish/eie-web/blob/main/images/${name}`;
-      }
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
 
-      const main = document.getElementById("main");
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">Ziyey Bytes</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="generic.html">About Us</a></li>
+											<li><a href="elements.html">Our Menu</a></li>
+											<li><a href="/blog/index.html">Blog</a></li>
+											<!-- li><a href="#">Sign Up</a></!-->
+											<!-- li><a href="#">Log In</a></!-->
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
 
-      // fetches and creates an article
-      async function expandArticle(ref) {
-        const src = getResURL(`posts/${ref}.md`);
-        try {
-          const response = await fetch(src);
-          if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-          }
+				<!-- Banner -->
+					<section id="banner">
+						<div class="inner">
+							<h2>Welcome to Ziyey Bytes</h2>
+							<p>“Because fast food can also be <strong>healthy</strong>"</p>
+							<p>Healthy fast food for everyone!<br />
+							Nourishing meals crafted with care<br />
+							just for you.</p>
+							<!-- ul class="actions special">
+								<li><a href="#" class="button primary">Order Now</a></li>
+							</!-->
+						</div>
+						<a href="#one" class="more scrolly">Learn More</a>
+					</section>
 
-          // parse md data
-          const data = await response.text();
-          return marked.parse(data);
-        } catch (error) {
-          alert(error.message);
-        }
-      }
+				<!-- One -->
+					<section id="one" class="wrapper style1 special">
+						<div class="inner">
+							<header class="major">
+								<h2>Why Choose Ziyey Bytes?<br />
+								Delicious, Healthy, and Fast</h2>
+								<p>Our meals are designed to be nutritious and tasty. We believe in using fresh ingredients<br />
+								and crafting delicious dishes for a healthier lifestyle.</p>
+							</header>
+							<ul class="icons major">
+								<li><span class="icon fa-gem major style1"><span class="label">Fresh Ingredients</span></span></li>
+								<li><span class="icon fa-heart major style2"><span class="label">Nutritious Meals</span></span></li>
+								<li><span class="icon solid fa-code major style3"><span class="label">Fast Service</span></span></li>
+							</ul>
+						</div>
+					</section>
 
-      // Generates all articles
-      async function getArticle() {
-        try {
-          const response = await fetch(getResURL("posts.json"));
-          if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-          }
+				<!-- Two -->
+					<section id="two" class="wrapper alt style2">
+						<section class="spotlight">
+							<div class="image"><img src="images/burritos.jpg" alt="Healthy Salad" /></div>
+							<div class="content">
+								<h2>Healthy Burritos<br />
+									Packed with Flavor and Nutrition</h2>
+								<p>Our burritos are made with fresh, nutritious ingredients, making healthy eating a true delight!</p>
+							</div>
+						</section>
+						<section class="spotlight">
+							<div class="image"><img src="images/pokes.webp" alt="Healthy Bowls" /></div>
+							<div class="content">
+								<h2>Nourishing Bowls<br />
+								Perfectly Balanced</h2>
+								<p>Enjoy our wholesome bowls filled with grains, veggies, and proteins for a complete meal.</p>
+							</div>
+						</section>
+						<section class="spotlight">
+							<div class="image"><img src="images/smothies.webp" alt="Smoothies" /></div>
+							<div class="content">
+								<h2>Refreshing Smoothies<br />
+								Blend of Goodness</h2>
+								<p>Cool down with our refreshing smoothies made from real fruit and no added sugars.</p>
+							</div>
+						</section>
+					</section>
 
-          const json = await response.json();
-          json.articulos.forEach((articulo, index) => {
-            const art = document.createElement("article");
-            const h2 = document.createElement("h2");
-            const contents = document.createElement("div");
+				<!-- Three -->
+					<section id="three" class="wrapper style3 special">
+						<div class="inner">
+							<header class="major">
+								<h2>Your Health Matters</h2>
+								<p>We prioritize your health by providing meals that are not only delicious but also nutritious.</p>
+							</header>
+							<ul class="features">
+								<li class="icon fa-paper-plane">
+									<h3>Healthy Options</h3>
+									<p>Our menu is designed with your health in mind, offering a variety of wholesome choices.</p>
+								</li>
+								<li class="icon solid fa-laptop">
+									<h3>Order Online</h3>
+									<p>Convenience at your fingertips - order your favorite meals from our website.</p>
+								</li>
+								<li class="icon solid fa-code">
+									<h3>Easy Pickup</h3>
+									<p>Fast and easy pickup options for those on the go!</p>
+								</li>
+								<li class="icon solid fa-headphones-alt">
+									<h3>Customer Support</h3>
+									<p>We're here to help you with any questions or concerns regarding your orders.</p>
+								</li>
+							</ul>
+						</div>
+					</section>
 
-            h2.textContent = articulo.titulo;
-            contents.hidden = true;
+				<!-- CTA>
+					<section id="cta" class="wrapper style4">
+						<div class="inner">
+							<header>
+								<h2>Join the Ziyey Bytes Family</h2>
+								<p>Sign up today for exclusive offers and healthy eating tips!</p>
+							</header>
+							<ul class="actions stacked">
+								<li><a href="#" class="button fit primary">Sign Up</a></li>
+								<li><a href="#" class="button fit">Learn More</a></li>
+							</ul>
+						</div>
+					</section -->
 
-            art.appendChild(h2);
-            if (articulo.img != null) {
-              art.style.backgroundImage = `url(${getResURL(`images/${articulo.img}`)})`;
-            }
-            art.appendChild(contents);
-            
-            let loaded = false;
-            art.onclick = async () => {
-              if (!loaded) {
-                contents.innerHTML = await expandArticle(articulo.url);
-                loaded = true;
-              }
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<!-- li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></!-->
+							<!-- li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></!-->
+							<!-- li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></!-->
+							<!-- li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></!-->
+							<li><a href="mailto:aimaribarraviadero@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>&copy; Ziyey Bytes CC</li>
+							<li>Design: <a href="http://html5up.net">html5up</a></li>
+						</ul>
+					</footer>
 
-              h2.hidden = !h2.hidden;
-              contents.hidden = !contents.hidden;
-            };
-            main.appendChild(art);
-          });
-        } catch (error) {
-          alert.error(error.message);
-        }
-      }
-      getArticle();
-    </script>
-  </body>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>

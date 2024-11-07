@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>ZIYEY BLOG</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+      * {
+        font-family: 'Courier New', Courier, monospace;
+      }
+      body {
+        background-color: bisque;
+      }
+      header {
+        text-align: center;
+      }
+      main {
+        align-content: center;
+      }
+      article {
+        cursor: pointer;
+        background-repeat:round;
+        display: inline-flex;
+        background-color: beige;
+        align-items: center;
+        box-shadow: 1px;
+        margin: 1%;
+        padding: 1rem;
+        box-shadow: 5px 5px 5px;
+      }
+      article h2 {
+        background-color: beige;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        padding-left: 0.2em;
+        padding-right: 0.5em;
+      }
+      article div {
+        max-width: 50%;
+        background-color: beige;
+        padding: 1%;
+        box-shadow: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>ZIYEY BLOG</h1>
+      <a href="/index.html">GO BACK</a>
+    </header>
+    <main id="main"></main>
+    <script>
+      const main = document.getElementById("main");
+
+      // fetches and creates an article
+      async function expandArticle(ref) {
+        const src = `posts/${ref}.md`;
+        try {
+          const response = await fetch(src);
+          if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+          }
+
+          // parse md data
+          const data = await response.text();
+          return marked.parse(data);
+        } catch (error) {
+          alert(error.message);
+        }
+      }
+
+      // Generates all articles
+      async function getArticle() {
+        try {
+          const response = await fetch("posts.json");
+          if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+          }
+
+          const json = await response.json();
+          json.articulos.forEach((articulo, index) => {
+            const art = document.createElement("article");
+            const h2 = document.createElement("h2");
+            const contents = document.createElement("div");
+
+            h2.textContent = articulo.titulo;
+            contents.hidden = true;
+
+            art.appendChild(h2);
+            if (articulo.img != null) {
+              art.style.backgroundImage = `url("images/${articulo.img}")`;
+            }
+            art.appendChild(contents);
+            
+            let loaded = false;
+            art.onclick = async () => {
+              if (!loaded) {
+                contents.innerHTML = await expandArticle(articulo.url);
+                loaded = true;
+              }
+
+              h2.hidden = !h2.hidden;
+              contents.hidden = !contents.hidden;
+            };
+            main.appendChild(art);
+          });
+        } catch (error) {
+          alert.error(error.message);
+        }
+      }
+      getArticle();
+    </script>
+  </body>
+</html>
