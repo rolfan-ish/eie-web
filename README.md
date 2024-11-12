@@ -1,9 +1,9 @@
 # EIE Company website repository
 
 ## Authors
-Aimar
-Mikel
-Paula
+- Aimar
+- Mikel
+- Paula
 
 ## About this 
 `blog.html` was hand made.
