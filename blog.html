@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
     <title>ZIYEY BLOG</title>
+    
+    <!-- Marked for turning md files into html -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- Main style mapping  -->
     <style>
       * {
         font-family: 'Courier New', Courier, monospace;
@@ -22,8 +23,9 @@
         align-content: center;
       }
       article {
+        /* Cursor for indicating that it is clickable */
         cursor: pointer;
-        background-repeat:round;
+        background-repeat: round;
         display: inline-flex;
         background-color: beige;
         align-items: center;
@@ -52,11 +54,14 @@
       <h1>ZIYEY BLOG</h1>
       <a href="index.html">GO BACK</a>
     </header>
+
+    <!-- root element -->
     <main id="main"></main>
+    
     <script>
       const main = document.getElementById("main");
 
-      // fetches and creates an article
+      // fetches and creates an article, returning the html
       async function expandArticle(ref) {
         const src = `posts/${ref}.md`;
         try {
@@ -83,15 +88,16 @@
 
           const json = await response.json();
           json.articulos.forEach((articulo, index) => {
-            const art = document.createElement("article");
-            const h2 = document.createElement("h2");
-            const contents = document.createElement("div");
+            const art = document.createElement("article"); // root element
+            const h2 = document.createElement("h2"); // Title of the element
+            const contents = document.createElement("div"); // Content
 
             h2.textContent = articulo.titulo;
-            contents.hidden = true;
+            contents.hidden = true; // Hide contents at the beginning
 
             art.appendChild(h2);
             if (articulo.img != null) {
+              // if the article has an image, display it
               art.style.backgroundImage = `url("images/${articulo.img}")`;
             }
             art.appendChild(contents);
@@ -99,19 +105,22 @@
             let loaded = false;
             art.onclick = async () => {
               if (!loaded) {
+                // If the article is yet to be loaded, load it
                 contents.innerHTML = await expandArticle(articulo.url);
                 loaded = true;
               }
 
-              h2.hidden = !h2.hidden;
-              contents.hidden = !contents.hidden;
+              h2.hidden = !h2.hidden; // toggle title visibility
+              contents.hidden = !contents.hidden; // togglo content visibility
             };
-            main.appendChild(art);
+            
+            main.appendChild(art); // add the article to the site
           });
         } catch (error) {
           alert.error(error.message);
         }
       }
+      
       getArticle();
     </script>
   </body>
